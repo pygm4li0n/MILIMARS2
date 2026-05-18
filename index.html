@@ -2,38 +2,37 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JeroSneakers — Diseño & Moda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MILIMARS — DROP 2026 · STREETWEAR</title>
+    <!-- Fonts: Bebas Neue (títulos), Space Mono (acentos), DM Sans (texto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --black: #050505;
-            --deep: #0A0A0A;
-            --charcoal: #111111;
-            --dark-card: #1A1A1A;
-            --dark-elevated: #222222;
-            --border-dark: #2C2C2C;
-            --white: #FFFFFF;
-            --text-bright: #F5F5F5;
-            --text-soft: #C5C0BA;
-            --text-muted: #8A8580;
-            --rust: #D94A1A;
-            --rust-glow: #F05A2A;
-            --rust-deep: #B33A0F;
-            --accent: #E8A87C;
-            --accent-soft: #D49A6C;
-            --shadow-glow: 0 0 80px rgba(217, 74, 26, 0.18);
-            --shadow-card: 0 2px 24px rgba(0, 0, 0, 0.6);
-            --shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.7);
-            --radius-sm: 6px;
-            --radius: 10px;
-            --radius-lg: 14px;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #050505;
+            --deep: #0A0A0A;
+            --charcoal: #111111;
+            --card-bg: #161616;
+            --border-dark: #2a2a2a;
+            --white: #FFFFFF;
+            --text-bright: #F0F0F0;
+            --text-soft: #BFBFBF;
+            --text-muted: #7C7C7C;
+            /* MILIMARS GREEN identity */
+            --green: #39FF14;
+            --green-glow: rgba(57, 255, 20, 0.55);
+            --green-dim: #2ad40f;
+            --green-soft: #88ff66;
+            --green-deep: #1c8c0c;
+            --shadow-glow: 0 0 80px rgba(57, 255, 20, 0.22);
+            --shadow-card: 0 8px 24px rgba(0,0,0,0.6);
+            --radius: 12px;
+            --radius-lg: 18px;
         }
 
         html {
@@ -41,63 +40,49 @@
         }
 
         body {
-            background: var(--black);
+            background: var(--bg);
             color: var(--text-bright);
-            font-family: 'DM Sans', 'Barlow Condensed', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             overflow-x: hidden;
             cursor: none;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* CURSOR ÉPICO */
+        /* ─── CUSTOM CURSOR (verde neón) ─── */
         .cursor {
             width: 14px;
             height: 14px;
-            border: 2px solid var(--rust-glow);
+            border: 2px solid var(--green);
             border-radius: 50%;
             position: fixed;
             top: 0;
             left: 0;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.16s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.16s ease, box-shadow 0.16s ease;
+            transition: transform 0.18s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.2s ease, box-shadow 0.2s;
             background: transparent;
-            box-shadow: 0 0 0px transparent;
+            box-shadow: 0 0 6px var(--green-glow);
         }
         .cursor.hover {
             transform: scale(3.2);
-            background: rgba(240, 90, 42, 0.25);
-            border-color: var(--rust-glow);
-            box-shadow: 0 0 25px rgba(240, 90, 42, 0.6);
+            background: rgba(57, 255, 20, 0.2);
+            border-color: var(--green);
+            box-shadow: 0 0 28px var(--green-glow);
         }
-
         @media (hover: none) and (pointer: coarse) {
             body { cursor: auto; }
             .cursor { display: none; }
         }
 
-        /* GLOBAL TEXTURE: noise + jaguar spots */
+        /* TEXTURA PREMIUM: ruido + patrón sutil */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: 
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
-                radial-gradient(circle at 15% 25%, rgba(255,255,255,0.08) 2px, transparent 2px),
-                radial-gradient(circle at 35% 20%, rgba(255,255,255,0.06) 2.4px, transparent 2.4px),
-                radial-gradient(circle at 28% 38%, rgba(255,255,255,0.07) 1.6px, transparent 1.6px),
-                radial-gradient(circle at 45% 45%, rgba(255,255,255,0.05) 2.8px, transparent 2.8px),
-                radial-gradient(circle at 62% 30%, rgba(255,255,255,0.08) 2.2px, transparent 2.2px),
-                radial-gradient(circle at 78% 55%, rgba(255,255,255,0.06) 2.5px, transparent 2.5px),
-                radial-gradient(circle at 10% 65%, rgba(255,255,255,0.07) 2px, transparent 2px),
-                radial-gradient(circle at 55% 70%, rgba(255,255,255,0.05) 2.3px, transparent 2.3px),
-                radial-gradient(circle at 88% 18%, rgba(255,255,255,0.08) 1.9px, transparent 1.9px),
-                radial-gradient(circle at 40% 85%, rgba(255,255,255,0.06) 2.6px, transparent 2.6px);
-            background-size: 280px 280px, 120px 120px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 1000;
-            opacity: 0.85;
+            opacity: 0.7;
         }
 
         body::after {
@@ -105,24 +90,27 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
             z-index: 999;
-            background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%);
-            opacity: 0.8;
+            opacity: 0.6;
         }
 
-        /* HEADER */
+        /* HEADER GLASS */
         header {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             padding: 14px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
-            background: rgba(8,8,8,0.88);
+            z-index: 200;
+            background: rgba(5,5,5,0.86);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.2s;
         }
 
         .logo-link {
@@ -134,56 +122,55 @@
         .logo-img {
             height: 42px;
             width: auto;
-            object-fit: contain;
-            filter: brightness(1.1) drop-shadow(0 0 12px rgba(217,74,26,0.4));
-            transition: 0.3s;
+            filter: brightness(1.1) drop-shadow(0 0 12px var(--green-glow));
+            transition: transform 0.25s, filter 0.25s;
         }
         .logo-link:hover .logo-img {
             transform: scale(1.05);
-            filter: brightness(1.3) drop-shadow(0 0 22px rgba(217,74,26,0.6));
+            filter: brightness(1.2) drop-shadow(0 0 22px var(--green-glow));
         }
-        .logo-wordmark {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            display: flex;
-            align-items: baseline;
-            gap: 2px;
-            color: var(--white);
-        }
-        .logo-wordmark .outline {
-            -webkit-text-stroke: 1.5px var(--white);
-            color: transparent;
-        }
-        .logo-wordmark .accent { color: var(--rust-glow); }
 
-        nav { display: flex; gap: 4px; }
-        nav a {
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        nav a, .cart-header-btn {
             font-family: 'Space Mono', monospace;
-            font-size: 0.66rem;
+            font-size: 0.7rem;
+            letter-spacing: 1.8px;
             color: var(--text-soft);
             text-decoration: none;
-            padding: 8px 16px;
-            letter-spacing: 1.8px;
+            padding: 8px 18px;
             text-transform: uppercase;
-            border-radius: 20px;
-            transition: 0.28s;
-        }
-        nav a:hover {
-            color: var(--white);
-            background: rgba(255,255,255,0.05);
-            text-shadow: 0 0 18px rgba(232,168,124,0.5);
-        }
-        nav a.nav-cta {
-            background: var(--rust);
-            color: #fff;
-            padding: 9px 18px;
+            border-radius: 40px;
+            transition: all 0.25s;
+            background: transparent;
+            border: none;
+            cursor: none;
             font-weight: 500;
-            box-shadow: 0 0 20px rgba(217,74,26,0.25);
         }
-        nav a.nav-cta:hover {
-            background: var(--rust-glow);
-            box-shadow: 0 0 35px rgba(240,90,42,0.5);
+        nav a:hover, .cart-header-btn:hover {
+            color: var(--white);
+            background: rgba(57, 255, 20, 0.12);
+            text-shadow: 0 0 12px var(--green-glow);
+        }
+        .cart-header-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.6);
+        }
+        .cart-count-badge {
+            background: var(--green);
+            color: #000;
+            font-size: 0.6rem;
+            font-weight: 700;
+            border-radius: 30px;
+            padding: 2px 8px;
+            transition: all 0.2s;
+            font-family: monospace;
+            box-shadow: 0 0 12px var(--green-glow);
         }
 
         /* HERO */
@@ -192,336 +179,340 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             position: relative;
-            overflow: hidden;
-            background: var(--deep);
+            background: radial-gradient(ellipse at 20% 30%, #0C0C0C 0%, #020202 100%);
         }
-
         .hero-left {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 40px 80px;
-            position: relative;
+            padding: 120px 50px 80px 60px;
             z-index: 2;
         }
-
         .hero-tag {
             font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 4px;
-            color: var(--rust-glow);
-            margin-bottom: 16px;
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            color: var(--green);
+            text-shadow: 0 0 18px var(--green-glow);
+            margin-bottom: 18px;
+            text-transform: uppercase;
             opacity: 0;
-            animation: fadeUp 0.7s ease 0.15s forwards;
+            animation: fadeUp 0.7s 0.15s forwards;
         }
-
-        .hero-title-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 4px;
-        }
-
-        .hero-inline-logo {
-            height: clamp(70px, 10vw, 110px);
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(240,90,42,0.4));
-            opacity: 0;
-            animation: fadeIn 0.7s ease 0.3s forwards;
-        }
-
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(4.5rem, 9vw, 8.5rem);
-            line-height: 0.86;
-            color: var(--white);
+            font-size: clamp(4rem, 9vw, 8rem);
+            line-height: 0.85;
+            color: white;
             opacity: 0;
-            animation: fadeUp 0.7s ease 0.3s forwards;
+            animation: fadeUp 0.7s 0.3s forwards;
+        }
+        .hero-title .accent {
+            color: var(--green);
+            text-shadow: 0 0 40px var(--green-glow);
         }
         .hero-title .outline {
             -webkit-text-stroke: 2px var(--white);
             color: transparent;
+            text-shadow: none;
         }
-        .hero-title .accent {
-            color: var(--rust-glow);
-            text-shadow: 0 0 60px rgba(240,90,42,0.6);
-        }
-
         .hero-sub {
-            font-size: 1rem;
-            color: var(--accent-soft);
-            margin-top: 20px;
-            letter-spacing: 1.5px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            margin-top: 22px;
+            text-transform: uppercase;
             opacity: 0;
-            animation: fadeUp 0.7s ease 0.45s forwards;
+            animation: fadeUp 0.7s 0.45s forwards;
         }
-
         .hero-btns {
             display: flex;
-            gap: 14px;
+            gap: 18px;
             margin-top: 36px;
-            justify-content: center;
             opacity: 0;
-            animation: fadeUp 0.7s ease 0.6s forwards;
-        }
-
-        .btn-primary, .btn-outline {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: none;
-            transition: 0.28s;
-            text-decoration: none;
+            animation: fadeUp 0.7s 0.6s forwards;
         }
         .btn-primary {
-            background: var(--rust);
-            color: #fff;
+            font-family: 'Space Mono', monospace;
+            background: var(--green);
+            color: #000;
             border: none;
-            box-shadow: 0 0 35px rgba(217,74,26,0.3);
+            padding: 14px 32px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: none;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 24px var(--green-glow);
         }
         .btn-primary:hover {
-            background: var(--rust-glow);
-            transform: translateY(-3px);
-            box-shadow: 0 0 55px rgba(240,90,42,0.6), 0 12px 28px rgba(0,0,0,0.6);
+            background: #6eff44;
+            transform: translateY(-2px);
+            box-shadow: 0 0 44px var(--green-glow);
         }
         .btn-outline {
+            font-family: 'Space Mono', monospace;
             background: transparent;
-            color: var(--white);
             border: 1.5px solid rgba(255,255,255,0.3);
+            padding: 14px 32px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            border-radius: 40px;
+            color: white;
+            cursor: none;
+            transition: 0.2s;
+            text-decoration: none;
         }
         .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-3px);
-            background: rgba(232,168,124,0.06);
+            border-color: var(--green);
+            color: var(--green);
+            box-shadow: 0 0 18px var(--green-glow);
+            background: rgba(57,255,20,0.05);
         }
-
-        /* Hero right - vertical Instagram handle */
         .hero-right {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(ellipse at 35% 45%, #1A0E08 0%, #0A0A0A 55%, #050505 100%);
-            overflow: hidden;
+            background: radial-gradient(ellipse at 45% 50%, #111, #030303);
         }
-
         .hero-glow {
             position: absolute;
             border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
             filter: blur(80px);
+            background: rgba(57,255,20,0.2);
+            width: 350px;
+            height: 350px;
+            animation: pulseGlow 5s infinite;
         }
-        .hero-glow.g1 { width: 320px; height: 320px; background: rgba(240,90,42,0.14); top: 10%; right: 15%; animation: pulseGlow 4s ease-in-out infinite; }
-        .hero-glow.g2 { width: 200px; height: 200px; background: rgba(232,168,124,0.09); bottom: 20%; left: 10%; animation: pulseGlow 5s ease-in-out 1.5s infinite; }
-        .hero-glow.g3 { width: 180px; height: 180px; background: rgba(240,90,42,0.07); top: 50%; right: 25%; animation: pulseGlow 6s ease-in-out 2s infinite; }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
-        }
-
-        .hero-bg-text {
-            position: absolute;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 20vw;
-            color: rgba(255,255,255,0.02);
-            white-space: nowrap;
-            user-select: none;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .hero-vertical-ig {
-            position: relative;
+        .hero-logo-main {
+            width: 65%;
+            max-width: 380px;
             z-index: 2;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(6rem, 12vw, 11rem);
-            color: rgba(255,255,255,0.12);
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            transform: rotate(5deg);
-            text-shadow: 0 0 50px rgba(240,90,42,0.25);
+            filter: drop-shadow(0 0 60px var(--green-glow)) drop-shadow(0 25px 40px black);
+            animation: floatEpic 5s ease-in-out infinite;
             opacity: 0;
-            animation: fadeIn 1s ease 1s forwards;
-            white-space: nowrap;
-            line-height: 0.8;
+            animation: floatEpic 5s ease-in-out infinite, fadeIn 0.9s 0.7s forwards;
         }
+        @keyframes fadeUp { 0% { opacity:0; transform:translateY(28px); } 100% { opacity:1; transform:translateY(0); } }
+        @keyframes fadeIn { to { opacity:1; } }
+        @keyframes floatEpic { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
+        @keyframes pulseGlow { 0%,100%{ opacity:0.35; transform:scale(1);} 50%{ opacity:0.7; transform:scale(1.2); } }
 
-        /* STATS BAR */
+        /* STATS TICKER */
         .stats-bar {
-            background: linear-gradient(135deg, #1A0A04 0%, #1C0D06 50%, #140904 100%);
-            border-top: 1px solid rgba(217,74,26,0.25);
-            border-bottom: 1px solid rgba(217,74,26,0.2);
-            padding: 16px 0;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(57,255,20,0.2);
+            border-bottom: 1px solid rgba(57,255,20,0.2);
+            padding: 14px 0;
             overflow: hidden;
             position: relative;
             z-index: 5;
         }
         .ticker {
             display: flex;
-            gap: 50px;
-            animation: ticker 18s linear infinite;
+            gap: 48px;
+            animation: tickerX 22s linear infinite;
+            width: max-content;
         }
-        .stat { display: flex; align-items: baseline; gap: 7px; white-space: nowrap; }
+        .stat {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            white-space: nowrap;
+        }
         .stat-num {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            color: #fff;
-            text-shadow: 0 0 25px rgba(255,255,255,0.3);
+            font-size: 1.7rem;
+            color: var(--green);
+            text-shadow: 0 0 12px var(--green-glow);
         }
         .stat-label {
             font-family: 'Space Mono', monospace;
-            font-size: 0.56rem;
-            color: rgba(255,255,255,0.75);
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
         }
-        @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes tickerX { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
 
-        /* CATALOG */
+        /* SECTION GENERAL */
         #catalogo {
             padding: 100px 60px;
             background: var(--charcoal);
+            position: relative;
+            z-index: 4;
         }
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 50px;
             flex-wrap: wrap;
+            margin-bottom: 50px;
             gap: 20px;
         }
         .section-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            line-height: 0.92;
+            font-size: clamp(3rem, 5.5vw, 4.7rem);
+            line-height: 0.9;
             color: var(--white);
         }
-        .section-title .line2 {
-            -webkit-text-stroke: 1.5px var(--accent);
-            color: transparent;
+        .section-title .g {
+            color: var(--green);
+            text-shadow: 0 0 20px var(--green-glow);
         }
         .section-note {
             font-family: 'Space Mono', monospace;
             font-size: 0.6rem;
+            letter-spacing: 2px;
             color: var(--text-muted);
             text-align: right;
         }
-
-        .filters { display: flex; gap: 10px; margin-bottom: 40px; }
-        .filter-btn {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.63rem;
-            letter-spacing: 1.8px;
-            padding: 10px 22px;
-            border: 1.5px solid rgba(255,255,255,0.15);
-            background: transparent;
-            color: var(--text-soft);
-            border-radius: 25px;
-            cursor: none;
-            transition: 0.28s;
-        }
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--rust);
-            border-color: var(--rust);
-            color: #fff;
-            box-shadow: 0 0 25px rgba(217,74,26,0.4);
-        }
-
-        .sneaker-grid {
+        /* PRODUCT GRID */
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
         }
-
-        .sneaker-card {
-            background: var(--dark-card);
+        .product-card {
+            background: var(--card-bg);
             border-radius: var(--radius-lg);
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(57,255,20,0.12);
             overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
             cursor: none;
-            transition: 0.38s;
+            position: relative;
         }
-        .sneaker-card:hover {
+        .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg), 0 0 45px rgba(217,74,26,0.15);
-            border-color: rgba(217,74,26,0.3);
+            border-color: rgba(57,255,20,0.45);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.6), 0 0 0 1px rgba(57,255,20,0.2);
         }
-
-        .card-img-wrap {
-            aspect-ratio: 4/3;
+        .card-img {
+            aspect-ratio: 1 / 1;
+            background: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             overflow: hidden;
-            background: #1E1E1E;
         }
-        .card-img-wrap img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.95) contrast(1.05);
-            transition: 0.5s;
+        .card-img img {
+            width: 85%;
+            object-fit: contain;
+            mix-blend-mode: lighten;
+            transition: transform 0.45s, filter 0.3s;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
         }
-        .sneaker-card:hover .card-img-wrap img {
-            transform: scale(1.08);
-            filter: brightness(1.05) contrast(1.1);
+        .product-card:hover .card-img img {
+            transform: scale(1.07);
+            filter: brightness(1.1) drop-shadow(0 0 28px var(--green-glow));
         }
-
-        .card-badge {
+        .badge {
             position: absolute;
-            top: 14px; left: 14px;
+            top: 14px;
+            left: 14px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.53rem;
+            font-size: 0.55rem;
+            font-weight: 700;
+            background: var(--green);
+            color: #000;
             padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: 600;
+            border-radius: 40px;
+            letter-spacing: 1px;
+            z-index: 2;
+            box-shadow: 0 0 16px var(--green-glow);
         }
-        .badge-new { background: var(--rust); color: #fff; box-shadow: 0 0 18px rgba(217,74,26,0.5); }
-        .badge-used { background: rgba(30,30,30,0.9); color: var(--accent); border: 1px solid rgba(232,168,124,0.35); }
-
-        .card-info { padding: 18px 20px; }
-        .card-brand {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.56rem;
-            color: var(--rust-glow);
-            margin-bottom: 4px;
+        .card-info {
+            padding: 18px 20px;
         }
-        .card-name {
+        .product-name {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            color: var(--white);
-            line-height: 1.1;
-            margin-bottom: 8px;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
         }
-        .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
-        .card-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--accent); }
-        .card-size { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--text-muted); }
-
-        .card-cta {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: var(--rust);
-            color: #fff;
+        .product-detail {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+            font-family: 'DM Sans', sans-serif;
+            margin-bottom: 12px;
+        }
+        .size-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 14px 0 12px;
+        }
+        .size-btn {
             font-family: 'Space Mono', monospace;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-soft);
             font-size: 0.6rem;
-            text-align: center;
-            padding: 13px;
-            transform: translateY(100%);
-            transition: 0.3s;
-            text-decoration: none;
-            display: block;
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 40px;
+            cursor: none;
+            transition: all 0.2s;
         }
-        .sneaker-card:hover .card-cta { transform: translateY(0); }
+        .size-btn.active {
+            background: var(--green);
+            border-color: var(--green);
+            color: #000;
+            box-shadow: 0 0 16px var(--green-glow);
+        }
+        .size-btn:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .price-block {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            color: var(--green);
+            letter-spacing: 1px;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .price-ars {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+        .card-hover-cta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--green);
+            color: #000;
+            text-align: center;
+            padding: 14px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transform: translateY(100%);
+            transition: transform 0.27s cubic-bezier(0.2,0.9,0.4,1.1);
+            cursor: none;
+            border: none;
+            width: 100%;
+            backdrop-filter: blur(4px);
+        }
+        .product-card:hover .card-hover-cta {
+            transform: translateY(0);
+        }
 
         /* ABOUT */
         #nosotros {
@@ -529,317 +520,413 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 70px;
-            align-items: center;
             background: var(--deep);
             position: relative;
-            overflow: hidden;
+            border-top: 1px solid rgba(57,255,20,0.1);
+            border-bottom: 1px solid rgba(57,255,20,0.1);
         }
-        #nosotros::after {
-            content: 'JERO';
-            position: absolute;
-            right: -30px; top: 50%; transform: translateY(-50%);
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 18vw;
-            color: rgba(255,255,255,0.015);
-            pointer-events: none;
+        .about-logo-wrap img {
+            width: 80%;
+            max-width: 300px;
+            filter: drop-shadow(0 0 40px var(--green-glow));
         }
-        .about-visual { display: flex; justify-content: center; z-index: 2; }
-        .about-logo-wrap {
-            width: 80%; max-width: 320px;
-            animation: floatEpic 5s ease-in-out infinite;
-            filter: drop-shadow(0 0 50px rgba(240,90,42,0.25));
-        }
-        .about-logo-wrap img { width: 100%; height: auto; }
-        .about-content { z-index: 2; }
         .about-eyebrow {
             font-family: 'Space Mono', monospace;
             font-size: 0.6rem;
-            color: var(--rust-glow);
-            margin-bottom: 16px;
+            letter-spacing: 4px;
+            color: var(--green);
+            margin-bottom: 18px;
         }
         .about-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
-            line-height: 0.9;
-            margin-bottom: 24px;
-            color: var(--white);
+            font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+            line-height: 0.92;
+            margin-bottom: 20px;
         }
-        .about-title .outline {
-            -webkit-text-stroke: 1.5px var(--white);
-            color: transparent;
+        .about-body {
+            color: var(--text-soft);
+            line-height: 1.7;
+            font-size: 0.9rem;
+            margin-bottom: 18px;
         }
-        .about-title .accent { color: var(--rust-glow); }
-        .about-body { font-size: 0.95rem; line-height: 1.75; color: var(--text-soft); margin-bottom: 20px; }
-        .about-body strong { color: var(--white); }
-        .about-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .about-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
         .tag {
             font-family: 'Space Mono', monospace;
-            font-size: 0.54rem;
-            padding: 7px 14px;
-            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.5rem;
+            padding: 6px 12px;
+            border: 1px solid rgba(57,255,20,0.3);
+            border-radius: 30px;
             color: var(--text-soft);
-            border-radius: 20px;
-            background: rgba(255,255,255,0.02);
+        }
+
+        /* CART PANEL */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
             transition: 0.25s;
         }
-        .tag:hover { border-color: var(--accent); color: var(--accent); }
-
-        /* CONTACT */
-        #contacto {
-            padding: 100px 60px;
-            text-align: center;
-            background: var(--charcoal);
+        .cart-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: min(440px, 90%);
+            height: 100vh;
+            background: #0c0c0c;
+            border-left: 1px solid var(--green);
+            z-index: 301;
+            transform: translateX(100%);
+            transition: 0.3s cubic-bezier(0.2,0.9,0.4,1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.8);
         }
-        .contact-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(4rem, 8vw, 7rem);
-            line-height: 0.88;
-            color: var(--white);
-        }
-        .contact-title span {
-            -webkit-text-stroke: 2px var(--rust-glow);
-            color: transparent;
-        }
-        .contact-sub { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 44px; }
-        .contact-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-        .contact-link {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.82rem;
-            letter-spacing: 2px;
-            padding: 20px 42px;
-            border-radius: 36px;
-            text-decoration: none;
-            color: #fff;
-            min-width: 220px;
-            justify-content: center;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .contact-link.ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
-        .contact-link.wa { background: #25D366; }
-        .contact-link:hover { filter: brightness(1.15); transform: translateY(-3px); }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding: 28px 60px;
+        .cart-panel.open { transform: translateX(0); }
+        .cart-overlay.open { opacity: 1; pointer-events: auto; }
+        .cart-head {
+            padding: 1.4rem;
+            border-bottom: 1px solid rgba(57,255,20,0.3);
             display: flex;
             justify-content: space-between;
+        }
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
+        }
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            background: #1a1a1a;
+            border-radius: 8px;
+        }
+        .item-details {
+            flex: 1;
+        }
+        .qty-control {
+            display: flex;
             align-items: center;
-            background: var(--black);
-            flex-wrap: wrap;
-            gap: 12px;
+            gap: 8px;
+            margin-top: 10px;
         }
-        .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--white); }
-        .footer-logo span { color: var(--rust); }
-        .footer-copy { font-family: 'Space Mono', monospace; font-size: 0.5rem; color: var(--text-muted); }
-        .footer-ig { font-family: 'Space Mono', monospace; font-size: 0.53rem; color: var(--rust-glow); text-decoration: none; }
-
-        @keyframes fadeUp { from { opacity:0; transform: translateY(28px); } to { opacity:1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-        @keyframes floatEpic { 0%,100%{ transform: translateY(0px); } 50%{ transform: translateY(-16px); } }
-
-        .reveal {
-            opacity: 0; transform: translateY(36px);
-            transition: opacity 0.7s, transform 0.7s;
+        .qty-btn {
+            background: #222;
+            border: none;
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            cursor: none;
         }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .total-row {
+            padding: 1rem;
+            border-top: 1px solid #2a2a2a;
+            background: #050505;
+        }
+        .wa-buy {
+            width: 90%;
+            margin: 0 auto 20px;
+            background: var(--green);
+            border: none;
+            padding: 14px;
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: none;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            background: var(--green);
+            color: black;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-family: monospace;
+            font-weight: bold;
+            z-index: 500;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+        footer {
+            padding: 28px 40px;
+            display: flex;
+            justify-content: space-between;
+            background: #020202;
+            border-top: 1px solid #222;
+        }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
+        @media (max-width: 880px) {
             .hero { grid-template-columns: 1fr; }
             .hero-right { display: none; }
-            .hero-left { padding: 100px 24px 40px; }
-            #nosotros { grid-template-columns: 1fr; gap: 30px; }
-            .about-visual { justify-content: center; }
-            .about-logo-wrap { max-width: 200px; }
-            .section-header { flex-direction: column; align-items: flex-start; }
-            .section-note { text-align: left; }
-        }
-        @media (max-width: 768px) {
+            #catalogo, #nosotros { padding: 60px 20px; }
+            #nosotros { grid-template-columns: 1fr; }
+            .product-grid { gap: 16px; }
             header { padding: 12px 20px; }
-            .logo-wordmark { font-size: 1rem; }
-            .logo-img { height: 30px; }
-            nav a { font-size: 0.58rem; padding: 6px 10px; }
-            .hero-inline-logo { height: 60px; }
-            .contact-link { padding: 14px 24px; font-size: 0.68rem; min-width: 160px; }
-            .footer-logo { font-size: 1.17rem; }
         }
-        @media (max-width: 480px) {
-            .hero-left { padding: 80px 18px 30px; }
-            .hero-title-wrapper { gap: 12px; }
-            .hero-inline-logo { height: 50px; }
-            .hero-btns { flex-direction: column; gap: 10px; }
-            .sneaker-grid { grid-template-columns: 1fr; }
-            .contact-links { flex-direction: column; align-items: center; }
-            .contact-link { width: 100%; }
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
     <div class="cursor" id="cursor"></div>
-
     <header>
         <a href="#" class="logo-link">
-            <img src="https://i.postimg.cc/0NLTRD5y/logo222.png" alt="JeroSneakers Logo" class="logo-img" onerror="this.style.display='none'">
-            <span class="logo-wordmark">JERO<span class="outline">SNEAK</span><span class="accent">ERS</span></span>
+            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MILIMARS" class="logo-img">
         </a>
         <nav>
-            <a href="#catalogo">Catálogo</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#contacto" class="nav-cta">Contacto</a>
+            <a href="#catalogo">Colección</a>
+            <a href="#nosotros">MILIMARS</a>
+            <button class="cart-header-btn" id="openCartBtn">CARRITO <span id="cartCountDisplay" class="cart-count-badge">0</span></button>
         </nav>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-left">
-            <p class="hero-tag">// Diseño & Moda — Sneaker Culture</p>
-            <div class="hero-title-wrapper">
-                <img src="https://i.postimg.cc/0NLTRD5y/logo222.png" alt="Logo" class="hero-inline-logo" onerror="this.style.display='none'">
-                <h1 class="hero-title">
-                    JERO<br>
-                    <span class="outline">SNEAK</span><br>
-                    <span class="accent">ERS</span>
-                </h1>
-            </div>
-            <p class="hero-sub">Originales · Nuevos & Usados</p>
+            <p class="hero-tag">DROP 2026 · STOCK LIMITADO</p>
+            <h1 class="hero-title">MILI<span class="accent">MARS</span><br><span class="outline">STREET</span></h1>
+            <p class="hero-sub">Remeras con presencia real · Venado Tuerto · Santa Fe</p>
             <div class="hero-btns">
-                <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
-                <a href="#contacto" class="btn-outline">Contactar</a>
+                <a href="#catalogo" class="btn-primary">VER COLECCIÓN</a>
+                <button id="heroCartBtn" class="btn-outline">ABRIR CARRITO</button>
             </div>
         </div>
-
         <div class="hero-right">
-            <div class="hero-glow g1"></div>
-            <div class="hero-glow g2"></div>
-            <div class="hero-glow g3"></div>
-            <div class="hero-bg-text">KICKS</div>
-            <div class="hero-vertical-ig">@JERONIMOBEBER</div>
+            <div class="hero-glow"></div>
+            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" class="hero-logo-main" alt="Milimars Glow">
         </div>
     </section>
 
+    <!-- STATS TICKER -->
     <div class="stats-bar">
-        <div class="ticker">
-            <div class="stat"><span class="stat-num">3.6K</span><span class="stat-label">Seguidores</span></div>
-            <div class="stat"><span class="stat-num">28</span><span class="stat-label">Publicaciones</span></div>
-            <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Originales</span></div>
-            <div class="stat"><span class="stat-num">Nike</span><span class="stat-label">/ Jordan / SB</span></div>
-            <div class="stat"><span class="stat-num">🔥</span><span class="stat-label">Nuevos & Usados</span></div>
-            <div class="stat"><span class="stat-num">3.6K</span><span class="stat-label">Seguidores</span></div>
-            <div class="stat"><span class="stat-num">28</span><span class="stat-label">Publicaciones</span></div>
-            <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Originales</span></div>
-            <div class="stat"><span class="stat-num">Nike</span><span class="stat-label">/ Jordan / SB</span></div>
-            <div class="stat"><span class="stat-num">🔥</span><span class="stat-label">Nuevos & Usados</span></div>
+        <div class="ticker" id="tickerTrack">
+            <!-- JS populate -->
         </div>
     </div>
 
+    <!-- CATALOG -->
     <section id="catalogo">
         <div class="section-header reveal">
-            <h2 class="section-title">NUESTROS <span class="line2">DROPS</span></h2>
-            <p class="section-note">Consultá disponibilidad<br>por Instagram o WhatsApp</p>
+            <h2 class="section-title">NEON <span class="g">DROPS</span></h2>
+            <p class="section-note">Elegí talle · Sumá al carrito · Todo por WhatsApp</p>
         </div>
-        <div class="filters reveal">
-            <button class="filter-btn active" onclick="filterCards(this, 'all')">Todos</button>
-            <button class="filter-btn" onclick="filterCards(this, 'new')">Nuevos</button>
-            <button class="filter-btn" onclick="filterCards(this, 'used')">Usados</button>
-        </div>
-        <div class="sneaker-grid" id="grid">
-            <!-- Las tarjetas de producto se mantienen igual, con imágenes de Unsplash y onerror para eliminar si fallan -->
-            <div class="sneaker-card reveal" data-cat="nike new">
-                <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Air Force 1" loading="lazy" onerror="this.closest('.sneaker-card').remove()"><span class="card-badge badge-new">Nuevo</span></div>
-                <div class="card-info"><p class="card-brand">Nike</p><p class="card-name">Air Force 1 Supreme White</p><div class="card-footer"><span class="card-price">Consultar</span><span class="card-size">US 9/10/11</span></div></div>
-                <a href="#contacto" class="card-cta">→ Consultar precio</a>
-            </div>
-            <div class="sneaker-card reveal" data-cat="jordan used">
-                <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jordan 3" loading="lazy" onerror="this.closest('.sneaker-card').remove()"><span class="card-badge badge-used">Usado</span></div>
-                <div class="card-info"><p class="card-brand">Jordan</p><p class="card-name">Air Jordan 3 Retro</p><div class="card-footer"><span class="card-price">Consultar</span><span class="card-size">US 10</span></div></div>
-                <a href="#contacto" class="card-cta">→ Consultar precio</a>
-            </div>
-            <div class="sneaker-card reveal" data-cat="nike used">
-                <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jordan 3 Camo" loading="lazy" onerror="this.closest('.sneaker-card').remove()"><span class="card-badge badge-used">Usado</span></div>
-                <div class="card-info"><p class="card-brand">Nike</p><p class="card-name">Air Jordan 3 Camo</p><div class="card-footer"><span class="card-price">Consultar</span><span class="card-size">US 9.5</span></div></div>
-                <a href="#contacto" class="card-cta">→ Consultar precio</a>
-            </div>
-            <div class="sneaker-card reveal" data-cat="nike sb used">
-                <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1597045566677-8ef032bb08e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dunk High" loading="lazy" onerror="this.closest('.sneaker-card').remove()"><span class="card-badge badge-used">Usado</span></div>
-                <div class="card-info"><p class="card-brand">Nike SB</p><p class="card-name">Dunk High Gorge Green</p><div class="card-footer"><span class="card-price">Consultar</span><span class="card-size">US 10/10.5</span></div></div>
-                <a href="#contacto" class="card-cta">→ Consultar precio</a>
-            </div>
-            <div class="sneaker-card reveal" data-cat="nike new">
-                <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vomero 5" loading="lazy" onerror="this.closest('.sneaker-card').remove()"><span class="card-badge badge-new">Nuevo</span></div>
-                <div class="card-info"><p class="card-brand">Nike</p><p class="card-name">Vomero 5 Silver Red</p><div class="card-footer"><span class="card-price">Consultar</span><span class="card-size">US 8.5/9/10</span></div></div>
-                <a href="#contacto" class="card-cta">→ Consultar precio</a>
-            </div>
-            <div class="sneaker-card reveal" data-cat="nike sb used">
-                <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1600185365926-3a2ce2cdb9eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dunk Low" loading="lazy" onerror="this.closest('.sneaker-card').remove()"><span class="card-badge badge-used">Usado</span></div>
-                <div class="card-info"><p class="card-brand">Nike SB</p><p class="card-name">Dunk Low Brown Tan</p><div class="card-footer"><span class="card-price">Consultar</span><span class="card-size">US 9</span></div></div>
-                <a href="#contacto" class="card-cta">→ Consultar precio</a>
-            </div>
-        </div>
+        <div class="product-grid" id="productGrid"></div>
     </section>
 
+    <!-- ABOUT -->
     <section id="nosotros">
-        <div class="about-visual reveal">
-            <div class="about-logo-wrap">
-                <img src="https://i.postimg.cc/zB11CRcc/lgo2322323.png" alt="Pasión por las Kicks" onerror="this.parentElement.style.display='none'">
-            </div>
+        <div class="about-logo-wrap reveal">
+            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MiliMars">
         </div>
-        <div class="about-content reveal">
-            <p class="about-eyebrow">// Quiénes Somos</p>
-            <h2 class="about-title">PASIÓN<br><span class="outline">POR LAS</span><br><span class="accent">KICKS</span></h2>
-            <p class="about-body">Somos <strong>JeroSneakers</strong>, una cuenta dedicada a la cultura del sneaker y la moda urbana. Compramos, vendemos y conseguimos zapatillas originales — nuevas y usadas — de las marcas más codiciadas del mercado.</p>
-            <p class="about-body">Cada par pasa por nuestra verificación de autenticidad. Si lo tiene Jero, es original. Punto.</p>
+        <div class="reveal">
+            <p class="about-eyebrow">// IDENTIDAD</p>
+            <h2 class="about-title">MILI<span style="color:var(--green)">MARS</span><br>VT · SFE</h2>
+            <p class="about-body">La marca que fusiona actitud urbana, estética neón y prendas pensadas para la noche y el día. Cada drop es limitado, con cortes pensados para destacar.</p>
+            <p class="about-body">Todo el pedido se gestiona directo por WhatsApp con talle, cantidad y total. Sin intermediarios, con la misma energía que nuestras remeras.</p>
             <div class="about-tags">
-                <span class="tag">100% Originales</span><span class="tag">Nike</span><span class="tag">Jordan</span><span class="tag">Nike SB</span><span class="tag">Envíos</span><span class="tag">Diseño & Moda</span>
+                <span class="tag">Algodón premium</span>
+                <span class="tag">Estampa neon</span>
+                <span class="tag">Envíos</span>
+                <span class="tag">Drop 2026</span>
             </div>
-        </div>
-    </section>
-
-    <section id="contacto">
-        <h2 class="contact-title reveal">HABLEMOS<br><span>SNEAKERS</span></h2>
-        <p class="contact-sub reveal">Consultá stock, tallas y precios</p>
-        <div class="contact-links reveal">
-            <a href="https://www.instagram.com/jerosneakers" target="_blank" class="contact-link ig">
-                <svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                @jerosneakers
-            </a>
-            <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="contact-link wa">
-                <svg width="22" height="22" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                WhatsApp
-            </a>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">Jero<span>Sneakers</span></div>
-        <p class="footer-copy">© 2026 · Diseño & Moda · Jeronimo Beber</p>
-        <a href="https://www.instagram.com/jerosneakers" class="footer-ig" target="_blank">@jerosneakers</a>
+        <p style="font-family:monospace; font-size:0.6rem;">MILIMARS · Venado Tuerto · Santa Fe · Argentina</p>
+        <p style="font-family:monospace; font-size:0.55rem; color:var(--green);">DROP 2026 · Stock Limitado</p>
     </footer>
 
+    <!-- CART PANEL -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-head">
+            <h3 style="font-family:'Bebas Neue';">TU CARRITO</h3>
+            <button id="closeCartBtn" style="background:none; border:none; color:white; font-size:1.5rem;">✕</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="total-row">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-family:'Space Mono';">TOTAL</span>
+                <span id="cartTotal" style="font-family:'Bebas Neue'; font-size:2rem; color:var(--green);">$0</span>
+            </div>
+            <button id="whatsappBuyBtn" class="wa-buy">COMPRAR POR WHATSAPP</button>
+            <p style="font-size:0.5rem; text-align:center; margin-top:12px;">Pago y envío coordinados por chat</p>
+        </div>
+    </div>
+    <div class="toast" id="toastMsg">AGREGADO</div>
+
     <script>
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX - 7 + 'px';
-            cursor.style.top = e.clientY - 7 + 'px';
-        });
-        document.querySelectorAll('a, button, .sneaker-card, .filter-btn').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
+        // ---------- MILIMARS DATA ----------
+        const WA_NUMBER = "5493462000000";
+        const PRICE = 25000;
+        const SIZES = ["XS", "S", "M", "L", "XL"];
+        const products = [
+            { id: 1, name: "Drop 01", detail: "Corte amplio · Algodón 100% · Unisex", img: "https://imglink.cc/cdn/UoliTM1FCv.png", tag: "NEW" },
+            { id: 2, name: "Drop 02", detail: "Peso medio · Estampa exclusiva · Base neutra", img: "https://imglink.cc/i/rXOlcOR-P6", tag: "HOT" },
+            { id: 3, name: "Drop 03", detail: "Tela premium · Tiraje corto · Edición especial", img: "https://imglink.cc/cdn/3w21rP1wWE.png", tag: "LTD" },
+            { id: 4, name: "Drop 04", detail: "Signature series · Calce relajado · 2026", img: "https://imglink.cc/cdn/Vw66pw01zG.png", tag: "EPIC" }
+        ];
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        let cart = [];
+        let selectedSizes = Object.fromEntries(products.map(p => [p.id, "M"]));
 
-        function filterCards(btn, cat) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.querySelectorAll('.sneaker-card').forEach(card => {
-                card.style.display = (cat === 'all' || card.dataset.cat.includes(cat)) ? '' : 'none';
+        function saveCart() { localStorage.setItem("milimars-cart", JSON.stringify(cart)); }
+        function loadCart() { const stored = localStorage.getItem("milimars-cart"); if(stored) cart = JSON.parse(stored); else cart = []; }
+
+        function updateCartUI() {
+            const count = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById("cartCountDisplay").innerText = count;
+            const total = cart.reduce((s,i) => s + i.qty * PRICE, 0);
+            document.getElementById("cartTotal").innerHTML = `$${total.toLocaleString("es-AR")}`;
+            const container = document.getElementById("cartItemsContainer");
+            if(cart.length === 0) { container.innerHTML = `<div style="padding:2rem; text-align:center; color:#aaa;">CARRITO VACÍO<br>🔥 sumá una remera</div>`; return; }
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+                    <div class="item-details">
+                        <strong style="font-family:'Bebas Neue'; font-size:1.2rem;">${item.name}</strong>
+                        <div style="font-size:0.7rem;">Talle ${item.size}</div>
+                        <div style="color:var(--green); font-weight:bold;">$${(item.qty * PRICE).toLocaleString("es-AR")}</div>
+                        <div class="qty-control">
+                            <button class="qty-btn" data-uid="${item.uid}" data-delta="-1">−</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" data-uid="${item.uid}" data-delta="1">+</button>
+                            <button style="background:#333; margin-left:auto; padding:4px 10px; border-radius:20px;" data-remove="${item.uid}">eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+            document.querySelectorAll("[data-delta]").forEach(btn => btn.addEventListener("click", (e) => {
+                const uid = btn.dataset.uid; const delta = parseInt(btn.dataset.delta);
+                const idx = cart.findIndex(i => i.uid === uid);
+                if(idx !== -1) { cart[idx].qty += delta; if(cart[idx].qty <= 0) cart.splice(idx,1); saveCart(); updateCartUI(); renderProductsGrid(); }
+            }));
+            document.querySelectorAll("[data-remove]").forEach(btn => btn.addEventListener("click", () => {
+                cart = cart.filter(i => i.uid !== btn.dataset.remove); saveCart(); updateCartUI(); renderProductsGrid();
+            }));
+        }
+
+        function addToCart(productId, openPanel = false) {
+            const prod = products.find(p => p.id === productId);
+            if(!prod) return;
+            const size = selectedSizes[productId];
+            const uid = `${prod.id}-${size}`;
+            const existing = cart.find(i => i.uid === uid);
+            if(existing) existing.qty++;
+            else cart.push({ uid, id: prod.id, name: prod.name, size, qty: 1, img: prod.img });
+            saveCart();
+            updateCartUI();
+            showToast(`${prod.name} · talle ${size}`);
+            if(openPanel) openCart();
+        }
+
+        function showToast(msg) { const t = document.getElementById("toastMsg"); t.innerText = msg; t.style.opacity = "1"; t.style.transform = "translateX(-50%) translateY(0px)"; setTimeout(() => { t.style.opacity = "0"; t.style.transform = "translateX(-50%) translateY(20px)"; }, 2000); }
+
+        function openCart() { document.getElementById("cartPanel").classList.add("open"); document.getElementById("cartOverlay").classList.add("open"); document.body.style.overflow = "hidden"; }
+        function closeCart() { document.getElementById("cartPanel").classList.remove("open"); document.getElementById("cartOverlay").classList.remove("open"); document.body.style.overflow = ""; }
+
+        function renderProductsGrid() {
+            const grid = document.getElementById("productGrid");
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="card-img">
+                        <img src="${p.img}" alt="${p.name}" loading="lazy">
+                        <span class="badge">${p.tag}</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-detail">${p.detail}</div>
+                        <div class="size-row" data-pid="${p.id}">
+                            ${SIZES.map(sz => `<button class="size-btn ${selectedSizes[p.id] === sz ? 'active' : ''}" data-size="${sz}" data-pid="${p.id}">${sz}</button>`).join("")}
+                        </div>
+                        <div class="price-block">
+                            $25<span style="font-size:0.9rem;">K</span>
+                            <span class="price-ars">ARS</span>
+                        </div>
+                    </div>
+                    <button class="card-hover-cta" data-add="${p.id}">+ AGREGAR AL CARRITO</button>
+                </div>
+            `).join("");
+
+            document.querySelectorAll(".size-btn").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const pid = parseInt(btn.dataset.pid);
+                    const newSize = btn.dataset.size;
+                    selectedSizes[pid] = newSize;
+                    renderProductsGrid();
+                });
+            });
+            document.querySelectorAll("[data-add]").forEach(btn => {
+                btn.addEventListener("click", (e) => { addToCart(parseInt(btn.dataset.add), false); });
             });
         }
+
+        function buildWhatsappLink() {
+            if(cart.length === 0) return "";
+            let lines = cart.map(i => `- ${i.name} | Talle ${i.size} | Cant. ${i.qty} | $${(i.qty*PRICE).toLocaleString("es-AR")}`);
+            let total = cart.reduce((s,i)=> s + i.qty*PRICE,0);
+            let msg = `Hola MiliMars 🔥%0AQuiero pedir:%0A${lines.join("%0A")}%0A%0ATotal: $${total.toLocaleString("es-AR")} ARS%0ACoordinamos pago y envío.`;
+            return `https://wa.me/${WA_NUMBER}?text=${msg}`;
+        }
+
+        function sendOrder() {
+            if(cart.length === 0) { showToast("🛒 Carrito vacío"); return; }
+            window.open(buildWhatsappLink(), "_blank");
+        }
+
+        function initTicker() {
+            const track = document.getElementById("tickerTrack");
+            const items = ["MILIMARS", "NEON GLOW", "STOCK LIMITADO", "ENVÍOS", "REMERAS PREMIUM", "DROP 2026", "VT · SFE", "$25.000", "GREEN EDITION", "COMPRA SEGURA"];
+            let html = "";
+            for(let i=0;i<3;i++) items.forEach(t => html += `<div class="stat"><span class="stat-num">✦</span><span class="stat-label">${t}</span></div>`);
+            track.innerHTML = html;
+        }
+
+        // custom cursor
+        const cursor = document.getElementById("cursor");
+        document.addEventListener("mousemove", e => { cursor.style.left = e.clientX - 7 + "px"; cursor.style.top = e.clientY - 7 + "px"; });
+        document.querySelectorAll("a, button, .product-card, .size-btn").forEach(el => {
+            el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+            el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+        });
+
+        // scroll reveal
+        const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); }), { threshold: 0.1 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        // events
+        document.getElementById("openCartBtn").addEventListener("click", openCart);
+        document.getElementById("heroCartBtn").addEventListener("click", openCart);
+        document.getElementById("closeCartBtn").addEventListener("click", closeCart);
+        document.getElementById("cartOverlay").addEventListener("click", closeCart);
+        document.getElementById("whatsappBuyBtn").addEventListener("click", sendOrder);
+        document.addEventListener("keydown", e => { if(e.key === "Escape") closeCart(); });
+
+        loadCart();
+        initTicker();
+        renderProductsGrid();
+        updateCartUI();
     </script>
 </body>
 </html>
