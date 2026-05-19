@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MILIMARS — DROP 2026 · STREETWEAR</title>
+
+    <!-- Precargas para optimizar carga de imágenes y fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://i.postimg.cc">
+    <link rel="preconnect" href="https://imglink.cc">
+
     <!-- Fonts: Bebas Neue (títulos), Space Mono (acentos), DM Sans (texto) -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -46,6 +54,7 @@
             overflow-x: hidden;
             cursor: none;
             -webkit-font-smoothing: antialiased;
+            position: relative;
         }
 
         /* ─── CUSTOM CURSOR (verde neón) ─── */
@@ -134,6 +143,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
         }
         nav a, .cart-header-btn {
             font-family: 'Space Mono', monospace;
@@ -149,6 +159,7 @@
             border: none;
             cursor: none;
             font-weight: 500;
+            white-space: nowrap;
         }
         nav a:hover, .cart-header-btn:hover {
             color: var(--white);
@@ -233,6 +244,7 @@
             margin-top: 36px;
             opacity: 0;
             animation: fadeUp 0.7s 0.6s forwards;
+            flex-wrap: wrap;
         }
         .btn-primary {
             font-family: 'Space Mono', monospace;
@@ -293,6 +305,8 @@
         .hero-logo-main {
             width: 65%;
             max-width: 380px;
+            height: auto;
+            aspect-ratio: 1 / 1;
             z-index: 2;
             filter: drop-shadow(0 0 60px var(--green-glow)) drop-shadow(0 25px 40px black);
             animation: floatEpic 5s ease-in-out infinite;
@@ -404,6 +418,7 @@
         }
         .card-img img {
             width: 85%;
+            height: auto;
             object-fit: contain;
             mix-blend-mode: lighten;
             transition: transform 0.45s, filter 0.3s;
@@ -525,9 +540,16 @@
             border-top: 1px solid rgba(57,255,20,0.1);
             border-bottom: 1px solid rgba(57,255,20,0.1);
         }
+        .about-logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .about-logo-wrap img {
             width: 80%;
             max-width: 300px;
+            height: auto;
+            aspect-ratio: 1 / 1;
             filter: drop-shadow(0 0 40px var(--green-glow));
         }
         .about-eyebrow {
@@ -675,23 +697,164 @@
             border-top: 1px solid #222;
         }
 
-        @media (max-width: 880px) {
-            .hero { grid-template-columns: 1fr; }
-            .hero-right { display: none; }
-            #catalogo, #nosotros { padding: 60px 20px; }
-            #nosotros { grid-template-columns: 1fr; }
-            .product-grid { gap: 16px; }
-            header { padding: 12px 20px; }
+        /* ─── BOTONES FLOTANTES WHATSAPP + INSTAGRAM ─── */
+        .floating-social {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 250;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(57, 255, 20, 0.4);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+            transition: all 0.25s ease;
+            cursor: pointer;
+            color: var(--green);
+            text-decoration: none;
+        }
+        .social-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+            filter: drop-shadow(0 0 8px var(--green-glow));
+            transition: transform 0.2s;
+        }
+        .social-btn:hover {
+            background: rgba(57, 255, 20, 0.15);
+            border-color: var(--green);
+            box-shadow: 0 0 35px var(--green-glow);
+            transform: scale(1.08);
+        }
+        .social-btn:hover svg {
+            transform: scale(1.1);
+        }
+        /* Ajuste para que no tape el carrito en mobile */
+        @media (max-width: 600px) {
+            .floating-social {
+                bottom: 16px;
+                right: 16px;
+                gap: 12px;
+            }
+            .social-btn {
+                width: 48px;
+                height: 48px;
+            }
+            .social-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 880px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-right {
+                display: none;
+            }
+            #catalogo, #nosotros {
+                padding: 60px 20px;
+            }
+            #nosotros {
+                grid-template-columns: 1fr;
+            }
+            .product-grid {
+                gap: 16px;
+            }
+            header {
+                padding: 12px 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            nav {
+                justify-content: center;
+            }
+            .hero-left {
+                padding: 140px 24px 60px;
+                align-items: center;
+                text-align: center;
+            }
+            .hero-btns {
+                justify-content: center;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-note {
+                text-align: left;
+            }
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 3.4rem;
+            }
+            .hero-tag {
+                font-size: 0.6rem;
+                letter-spacing: 3px;
+            }
+            .logo-img {
+                height: 32px;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
     <div class="cursor" id="cursor"></div>
+
+    <!-- BOTONES FLOTANTES (WhatsApp + Instagram) -->
+    <div class="floating-social">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/543462415932" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Chatear por WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+            </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+        </a>
+    </div>
+
     <header>
         <a href="#" class="logo-link">
-            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MILIMARS" class="logo-img">
+            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MILIMARS" class="logo-img" width="168" height="42" loading="eager" decoding="async">
         </a>
         <nav>
             <a href="#catalogo">Colección</a>
@@ -713,7 +876,7 @@
         </div>
         <div class="hero-right">
             <div class="hero-glow"></div>
-            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" class="hero-logo-main" alt="Milimars Glow">
+            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" class="hero-logo-main" alt="Milimars Glow" width="380" height="380" loading="eager" decoding="async">
         </div>
     </section>
 
@@ -736,7 +899,7 @@
     <!-- ABOUT -->
     <section id="nosotros">
         <div class="about-logo-wrap reveal">
-            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MiliMars">
+            <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MiliMars" width="300" height="300" loading="lazy" decoding="async">
         </div>
         <div class="reveal">
             <p class="about-eyebrow">// IDENTIDAD</p>
@@ -762,7 +925,7 @@
     <div class="cart-panel" id="cartPanel">
         <div class="cart-head">
             <h3 style="font-family:'Bebas Neue';">TU CARRITO</h3>
-            <button id="closeCartBtn" style="background:none; border:none; color:white; font-size:1.5rem;">✕</button>
+            <button id="closeCartBtn" style="background:none; border:none; color:white; font-size:1.5rem; cursor:none;" aria-label="Cerrar carrito">✕</button>
         </div>
         <div class="cart-items" id="cartItemsContainer"></div>
         <div class="total-row">
@@ -778,7 +941,7 @@
 
     <script>
         // ---------- MILIMARS DATA ----------
-        const WA_NUMBER = "5493462000000";
+        const WA_NUMBER = "543462415932"; // WhatsApp actualizado
         const PRICE = 25000;
         const SIZES = ["XS", "S", "M", "L", "XL"];
         const products = [
@@ -800,10 +963,13 @@
             const total = cart.reduce((s,i) => s + i.qty * PRICE, 0);
             document.getElementById("cartTotal").innerHTML = `$${total.toLocaleString("es-AR")}`;
             const container = document.getElementById("cartItemsContainer");
-            if(cart.length === 0) { container.innerHTML = `<div style="padding:2rem; text-align:center; color:#aaa;">CARRITO VACÍO<br>🔥 sumá una remera</div>`; return; }
+            if(cart.length === 0) {
+                container.innerHTML = `<div style="padding:2rem; text-align:center; color:#aaa;">CARRITO VACÍO<br>🔥 sumá una remera</div>`;
+                return;
+            }
             container.innerHTML = cart.map(item => `
                 <div class="cart-item">
-                    <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+                    <img class="cart-item-img" src="${item.img}" alt="${item.name}" loading="lazy" decoding="async" width="70" height="70">
                     <div class="item-details">
                         <strong style="font-family:'Bebas Neue'; font-size:1.2rem;">${item.name}</strong>
                         <div style="font-size:0.7rem;">Talle ${item.size}</div>
@@ -817,14 +983,29 @@
                     </div>
                 </div>
             `).join("");
-            document.querySelectorAll("[data-delta]").forEach(btn => btn.addEventListener("click", (e) => {
-                const uid = btn.dataset.uid; const delta = parseInt(btn.dataset.delta);
-                const idx = cart.findIndex(i => i.uid === uid);
-                if(idx !== -1) { cart[idx].qty += delta; if(cart[idx].qty <= 0) cart.splice(idx,1); saveCart(); updateCartUI(); renderProductsGrid(); }
-            }));
-            document.querySelectorAll("[data-remove]").forEach(btn => btn.addEventListener("click", () => {
-                cart = cart.filter(i => i.uid !== btn.dataset.remove); saveCart(); updateCartUI(); renderProductsGrid();
-            }));
+
+            document.querySelectorAll("[data-delta]").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const uid = btn.dataset.uid;
+                    const delta = parseInt(btn.dataset.delta);
+                    const idx = cart.findIndex(i => i.uid === uid);
+                    if(idx !== -1) {
+                        cart[idx].qty += delta;
+                        if(cart[idx].qty <= 0) cart.splice(idx,1);
+                        saveCart();
+                        updateCartUI();
+                        renderProductsGrid();
+                    }
+                });
+            });
+            document.querySelectorAll("[data-remove]").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    cart = cart.filter(i => i.uid !== btn.dataset.remove);
+                    saveCart();
+                    updateCartUI();
+                    renderProductsGrid();
+                });
+            });
         }
 
         function addToCart(productId, openPanel = false) {
@@ -841,17 +1022,34 @@
             if(openPanel) openCart();
         }
 
-        function showToast(msg) { const t = document.getElementById("toastMsg"); t.innerText = msg; t.style.opacity = "1"; t.style.transform = "translateX(-50%) translateY(0px)"; setTimeout(() => { t.style.opacity = "0"; t.style.transform = "translateX(-50%) translateY(20px)"; }, 2000); }
+        function showToast(msg) {
+            const t = document.getElementById("toastMsg");
+            t.innerText = msg;
+            t.style.opacity = "1";
+            t.style.transform = "translateX(-50%) translateY(0px)";
+            setTimeout(() => {
+                t.style.opacity = "0";
+                t.style.transform = "translateX(-50%) translateY(20px)";
+            }, 2000);
+        }
 
-        function openCart() { document.getElementById("cartPanel").classList.add("open"); document.getElementById("cartOverlay").classList.add("open"); document.body.style.overflow = "hidden"; }
-        function closeCart() { document.getElementById("cartPanel").classList.remove("open"); document.getElementById("cartOverlay").classList.remove("open"); document.body.style.overflow = ""; }
+        function openCart() {
+            document.getElementById("cartPanel").classList.add("open");
+            document.getElementById("cartOverlay").classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
+        function closeCart() {
+            document.getElementById("cartPanel").classList.remove("open");
+            document.getElementById("cartOverlay").classList.remove("open");
+            document.body.style.overflow = "";
+        }
 
         function renderProductsGrid() {
             const grid = document.getElementById("productGrid");
             grid.innerHTML = products.map(p => `
                 <div class="product-card">
                     <div class="card-img">
-                        <img src="${p.img}" alt="${p.name}" loading="lazy">
+                        <img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async" width="400" height="400">
                         <span class="badge">${p.tag}</span>
                     </div>
                     <div class="card-info">
@@ -878,7 +1076,9 @@
                 });
             });
             document.querySelectorAll("[data-add]").forEach(btn => {
-                btn.addEventListener("click", (e) => { addToCart(parseInt(btn.dataset.add), false); });
+                btn.addEventListener("click", (e) => {
+                    addToCart(parseInt(btn.dataset.add), false);
+                });
             });
         }
 
@@ -891,7 +1091,10 @@
         }
 
         function sendOrder() {
-            if(cart.length === 0) { showToast("🛒 Carrito vacío"); return; }
+            if(cart.length === 0) {
+                showToast("🛒 Carrito vacío");
+                return;
+            }
             window.open(buildWhatsappLink(), "_blank");
         }
 
@@ -899,20 +1102,35 @@
             const track = document.getElementById("tickerTrack");
             const items = ["MILIMARS", "NEON GLOW", "STOCK LIMITADO", "ENVÍOS", "REMERAS PREMIUM", "DROP 2026", "VT · SFE", "$25.000", "GREEN EDITION", "COMPRA SEGURA"];
             let html = "";
-            for(let i=0;i<3;i++) items.forEach(t => html += `<div class="stat"><span class="stat-num">✦</span><span class="stat-label">${t}</span></div>`);
+            for(let i=0;i<3;i++) {
+                items.forEach(t => html += `<div class="stat"><span class="stat-num">✦</span><span class="stat-label">${t}</span></div>`);
+            }
             track.innerHTML = html;
         }
 
-        // custom cursor
+        // ─── CUSTOM CURSOR (solo desktop) ───
         const cursor = document.getElementById("cursor");
-        document.addEventListener("mousemove", e => { cursor.style.left = e.clientX - 7 + "px"; cursor.style.top = e.clientY - 7 + "px"; });
-        document.querySelectorAll("a, button, .product-card, .size-btn").forEach(el => {
-            el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
-            el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
-        });
+        const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (!isTouchDevice()) {
+            document.addEventListener("mousemove", e => {
+                cursor.style.left = e.clientX - 7 + "px";
+                cursor.style.top = e.clientY - 7 + "px";
+            });
+            document.querySelectorAll("a, button, .product-card, .size-btn, .social-btn").forEach(el => {
+                el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+                el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+            });
+        } else {
+            cursor.style.display = "none";
+        }
 
         // scroll reveal
-        const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); }), { threshold: 0.1 });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if(e.isIntersecting) e.target.classList.add("visible");
+            });
+        }, { threshold: 0.1 });
         document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
         // events
@@ -921,7 +1139,9 @@
         document.getElementById("closeCartBtn").addEventListener("click", closeCart);
         document.getElementById("cartOverlay").addEventListener("click", closeCart);
         document.getElementById("whatsappBuyBtn").addEventListener("click", sendOrder);
-        document.addEventListener("keydown", e => { if(e.key === "Escape") closeCart(); });
+        document.addEventListener("keydown", e => {
+            if(e.key === "Escape") closeCart();
+        });
 
         loadCart();
         initTicker();
