@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MILIMARS — DROP 2026 · STREETWEAR</title>
 
-    <!-- Precargas para optimizar carga de imágenes y fuentes -->
+    <!-- Precargas para optimizar carga -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://i.postimg.cc">
     <link rel="preconnect" href="https://imglink.cc">
 
-    <!-- Fonts: Bebas Neue (títulos), Space Mono (acentos), DM Sans (texto) -->
+    <!-- Fonts: Bebas Neue (títulos masivos), Space Mono (técnico), DM Sans (cuerpo editorial) -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
@@ -22,23 +22,19 @@
         }
 
         :root {
-            --bg: #050505;
-            --deep: #0A0A0A;
-            --charcoal: #111111;
-            --card-bg: #161616;
-            --border-dark: #2a2a2a;
+            --bg: #020202;
+            --deep: #060606;
+            --charcoal: #0a0a0a;
+            --card-bg: #0f0f0f;
+            --border-dark: #1c1c1c;
             --white: #FFFFFF;
             --text-bright: #F0F0F0;
-            --text-soft: #BFBFBF;
-            --text-muted: #7C7C7C;
-            /* MILIMARS GREEN identity */
+            --text-soft: #B0B0B0;
+            --text-muted: #6a6a6a;
             --green: #39FF14;
             --green-glow: rgba(57, 255, 20, 0.55);
             --green-dim: #2ad40f;
-            --green-soft: #88ff66;
-            --green-deep: #1c8c0c;
-            --shadow-glow: 0 0 80px rgba(57, 255, 20, 0.22);
-            --shadow-card: 0 8px 24px rgba(0,0,0,0.6);
+            --shadow-glow: 0 0 80px rgba(57, 255, 20, 0.18);
             --radius: 12px;
             --radius-lg: 18px;
         }
@@ -57,7 +53,7 @@
             position: relative;
         }
 
-        /* ─── CUSTOM CURSOR (verde neón) ─── */
+        /* ─── CURSOR CUSTOM + TRAIL ─── */
         .cursor {
             width: 14px;
             height: 14px;
@@ -70,41 +66,74 @@
             z-index: 9999;
             transition: transform 0.18s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.2s ease, box-shadow 0.2s;
             background: transparent;
-            box-shadow: 0 0 6px var(--green-glow);
+            box-shadow: 0 0 8px var(--green-glow);
         }
         .cursor.hover {
             transform: scale(3.2);
             background: rgba(57, 255, 20, 0.2);
             border-color: var(--green);
-            box-shadow: 0 0 28px var(--green-glow);
+            box-shadow: 0 0 32px var(--green-glow);
+        }
+        .cursor-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(57,255,20,0.5) 0%, transparent 70%);
+            width: 40px;
+            height: 40px;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            animation: trailFade 0.8s forwards;
+        }
+        @keyframes trailFade {
+            0% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
         }
         @media (hover: none) and (pointer: coarse) {
             body { cursor: auto; }
-            .cursor { display: none; }
+            .cursor, .cursor-trail { display: none; }
         }
 
-        /* TEXTURA PREMIUM: ruido + patrón sutil */
-        body::before {
-            content: '';
+        /* ─── SCANLINES OVERLAY ─── */
+        .scanlines {
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1001;
+            opacity: 0.06;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.4) 2px, rgba(0,0,0,0.4) 4px);
+        }
+
+        /* ─── TEXTURA PREMIUM: ruido animado sutil ─── */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
             pointer-events: none;
             z-index: 1000;
-            opacity: 0.7;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            animation: grainShift 0.5s steps(2) infinite;
+        }
+        @keyframes grainShift {
+            0% { transform: translate(0,0); }
+            25% { transform: translate(-2px,1px); }
+            50% { transform: translate(1px,-2px); }
+            75% { transform: translate(-1px,-1px); }
+            100% { transform: translate(0,0); }
         }
 
-        body::after {
-            content: '';
+        /* ─── PARTÍCULAS FLOTANTES (canvas) ─── */
+        #particlesCanvas {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
-            z-index: 999;
-            opacity: 0.6;
+            z-index: 1;
+            opacity: 0.5;
         }
 
-        /* HEADER GLASS */
+        /* ─── HEADER GLASS OCULTABLE ─── */
         header {
             position: fixed;
             top: 0;
@@ -115,13 +144,16 @@
             justify-content: space-between;
             align-items: center;
             z-index: 200;
-            background: rgba(5,5,5,0.86);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(2,2,2,0.75);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border-bottom: 1px solid rgba(57, 255, 20, 0.2);
-            transition: all 0.2s;
+            transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.3s;
+            transform: translateY(0);
         }
-
+        header.hidden {
+            transform: translateY(-110%);
+        }
         .logo-link {
             display: flex;
             align-items: center;
@@ -138,17 +170,23 @@
             transform: scale(1.05);
             filter: brightness(1.2) drop-shadow(0 0 22px var(--green-glow));
         }
-
+        .brand-tagline {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.5rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            display: none;
+        }
         nav {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         nav a, .cart-header-btn {
             font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 1.8px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
             color: var(--text-soft);
             text-decoration: none;
             padding: 8px 18px;
@@ -179,48 +217,57 @@
             font-weight: 700;
             border-radius: 30px;
             padding: 2px 8px;
-            transition: all 0.2s;
             font-family: monospace;
             box-shadow: 0 0 12px var(--green-glow);
         }
+        @media (min-width: 880px) {
+            .brand-tagline {
+                display: inline;
+                margin-left: 12px;
+                border-left: 1px solid rgba(57,255,20,0.3);
+                padding-left: 14px;
+            }
+        }
 
-        /* HERO */
+        /* ─── HERO CINEMÁTICO ─── */
         .hero {
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
             position: relative;
-            background: radial-gradient(ellipse at 20% 30%, #0C0C0C 0%, #020202 100%);
+            background: radial-gradient(ellipse at 20% 30%, #0a0a0a 0%, #010101 100%);
+            overflow: hidden;
         }
         .hero-left {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 120px 50px 80px 60px;
-            z-index: 2;
+            padding: 140px 50px 80px 60px;
+            z-index: 3;
         }
         .hero-tag {
             font-family: 'Space Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 5px;
+            font-size: 0.6rem;
+            letter-spacing: 6px;
             color: var(--green);
             text-shadow: 0 0 18px var(--green-glow);
             margin-bottom: 18px;
             text-transform: uppercase;
             opacity: 0;
-            animation: fadeUp 0.7s 0.15s forwards;
+            animation: fadeUp 0.8s 0.15s forwards;
         }
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(4rem, 9vw, 8rem);
-            line-height: 0.85;
+            font-size: clamp(4.5rem, 10vw, 9rem);
+            line-height: 0.8;
             color: white;
             opacity: 0;
-            animation: fadeUp 0.7s 0.3s forwards;
+            animation: fadeUp 0.8s 0.3s forwards;
+            letter-spacing: 2px;
         }
         .hero-title .accent {
             color: var(--green);
-            text-shadow: 0 0 40px var(--green-glow);
+            text-shadow: 0 0 50px var(--green-glow);
         }
         .hero-title .outline {
             -webkit-text-stroke: 2px var(--white);
@@ -228,22 +275,22 @@
             text-shadow: none;
         }
         .hero-sub {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
+            font-family: 'Space Mono', monospace;
+            font-weight: 400;
+            letter-spacing: 3px;
+            font-size: 0.7rem;
             color: var(--text-soft);
             margin-top: 22px;
             text-transform: uppercase;
             opacity: 0;
-            animation: fadeUp 0.7s 0.45s forwards;
+            animation: fadeUp 0.8s 0.45s forwards;
         }
         .hero-btns {
             display: flex;
-            gap: 18px;
-            margin-top: 36px;
+            gap: 14px;
+            margin-top: 32px;
             opacity: 0;
-            animation: fadeUp 0.7s 0.6s forwards;
+            animation: fadeUp 0.8s 0.6s forwards;
             flex-wrap: wrap;
         }
         .btn-primary {
@@ -270,7 +317,7 @@
         .btn-outline {
             font-family: 'Space Mono', monospace;
             background: transparent;
-            border: 1.5px solid rgba(255,255,255,0.3);
+            border: 1.5px solid rgba(255,255,255,0.25);
             padding: 14px 32px;
             font-size: 0.7rem;
             letter-spacing: 2px;
@@ -291,16 +338,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(ellipse at 45% 50%, #111, #030303);
+            background: radial-gradient(ellipse at 45% 50%, #0c0c0c, #010101);
+            overflow: hidden;
         }
         .hero-glow {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            background: rgba(57,255,20,0.2);
-            width: 350px;
-            height: 350px;
-            animation: pulseGlow 5s infinite;
+            filter: blur(100px);
+            background: rgba(57,255,20,0.15);
+            width: 400px;
+            height: 400px;
+            animation: pulseGlow 6s infinite;
         }
         .hero-logo-main {
             width: 65%;
@@ -309,29 +357,43 @@
             aspect-ratio: 1 / 1;
             z-index: 2;
             filter: drop-shadow(0 0 60px var(--green-glow)) drop-shadow(0 25px 40px black);
-            animation: floatEpic 5s ease-in-out infinite;
+            animation: floatEpic 6s ease-in-out infinite;
             opacity: 0;
-            animation: floatEpic 5s ease-in-out infinite, fadeIn 0.9s 0.7s forwards;
+            animation: floatEpic 6s ease-in-out infinite, fadeIn 1s 0.7s forwards;
+        }
+        /* Humo ambiental */
+        .fog-layer {
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cfilter id='blur'%3E%3CfeGaussianBlur stdDeviation='40'/%3E%3C/filter%3E%3Cellipse cx='150' cy='200' rx='120' ry='80' fill='%2339FF14' opacity='0.08' filter='url(%23blur)'/%3E%3Cellipse cx='450' cy='400' rx='100' ry='90' fill='%2339FF14' opacity='0.06' filter='url(%23blur)'/%3E%3C/svg%3E");
+            background-size: cover;
+            animation: fogDrift 12s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes fogDrift {
+            0%,100% { transform: scale(1.1) translateX(0); opacity: 0.6; }
+            50% { transform: scale(1.2) translateX(20px); opacity: 0.9; }
         }
         @keyframes fadeUp { 0% { opacity:0; transform:translateY(28px); } 100% { opacity:1; transform:translateY(0); } }
         @keyframes fadeIn { to { opacity:1; } }
-        @keyframes floatEpic { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
-        @keyframes pulseGlow { 0%,100%{ opacity:0.35; transform:scale(1);} 50%{ opacity:0.7; transform:scale(1.2); } }
+        @keyframes floatEpic { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-18px); } }
+        @keyframes pulseGlow { 0%,100%{ opacity:0.3; transform:scale(1);} 50%{ opacity:0.65; transform:scale(1.25); } }
 
-        /* STATS TICKER */
+        /* ─── STOCK TICKER + CÓDIGO COLECCIÓN ─── */
         .stats-bar {
-            background: #0a0a0a;
-            border-top: 1px solid rgba(57,255,20,0.2);
-            border-bottom: 1px solid rgba(57,255,20,0.2);
-            padding: 14px 0;
+            background: #050505;
+            border-top: 1px solid rgba(57,255,20,0.15);
+            border-bottom: 1px solid rgba(57,255,20,0.15);
+            padding: 10px 0;
             overflow: hidden;
             position: relative;
             z-index: 5;
         }
         .ticker {
             display: flex;
-            gap: 48px;
-            animation: tickerX 22s linear infinite;
+            gap: 40px;
+            animation: tickerX 28s linear infinite;
             width: max-content;
         }
         .stat {
@@ -342,20 +404,20 @@
         }
         .stat-num {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             color: var(--green);
             text-shadow: 0 0 12px var(--green-glow);
         }
         .stat-label {
             font-family: 'Space Mono', monospace;
-            font-size: 0.55rem;
-            letter-spacing: 1.5px;
+            font-size: 0.5rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--text-muted);
         }
         @keyframes tickerX { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
 
-        /* SECTION GENERAL */
+        /* ─── CATÁLOGO EDITORIAL ─── */
         #catalogo {
             padding: 100px 60px;
             background: var(--charcoal);
@@ -367,49 +429,51 @@
             justify-content: space-between;
             align-items: flex-end;
             flex-wrap: wrap;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             gap: 20px;
         }
         .section-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 5.5vw, 4.7rem);
-            line-height: 0.9;
+            font-size: clamp(3.5rem, 6vw, 5rem);
+            line-height: 0.85;
             color: var(--white);
+            letter-spacing: 2px;
         }
         .section-title .g {
             color: var(--green);
-            text-shadow: 0 0 20px var(--green-glow);
+            text-shadow: 0 0 25px var(--green-glow);
         }
-        .section-note {
+        .collection-code {
             font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
+            font-size: 0.55rem;
+            letter-spacing: 3px;
             color: var(--text-muted);
             text-align: right;
+            border-right: 2px solid var(--green);
+            padding-right: 16px;
         }
-        /* PRODUCT GRID */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
         }
         .product-card {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
-            border: 1px solid rgba(57,255,20,0.12);
+            border: 1px solid rgba(57,255,20,0.08);
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+            transition: all 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
             cursor: none;
             position: relative;
         }
         .product-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(57,255,20,0.45);
-            box-shadow: 0 20px 35px rgba(0,0,0,0.6), 0 0 0 1px rgba(57,255,20,0.2);
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(57,255,20,0.4);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.7), 0 0 0 1px rgba(57,255,20,0.25);
         }
         .card-img {
             aspect-ratio: 1 / 1;
-            background: #121212;
+            background: #0d0d0d;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -417,63 +481,80 @@
             overflow: hidden;
         }
         .card-img img {
-            width: 85%;
+            width: 88%;
             height: auto;
             object-fit: contain;
             mix-blend-mode: lighten;
-            transition: transform 0.45s, filter 0.3s;
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+            transition: transform 0.5s, filter 0.4s;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
         }
         .product-card:hover .card-img img {
-            transform: scale(1.07);
-            filter: brightness(1.1) drop-shadow(0 0 28px var(--green-glow));
+            transform: scale(1.08);
+            filter: brightness(1.15) drop-shadow(0 0 32px var(--green-glow));
+        }
+        /* Spotlight que sigue al mouse */
+        .card-spotlight {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(57,255,20,0.08) 0%, transparent 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2;
+        }
+        .product-card:hover .card-spotlight {
+            opacity: 1;
         }
         .badge {
             position: absolute;
             top: 14px;
             left: 14px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 700;
             background: var(--green);
             color: #000;
             padding: 5px 12px;
             border-radius: 40px;
-            letter-spacing: 1px;
-            z-index: 2;
+            letter-spacing: 1.5px;
+            z-index: 3;
             box-shadow: 0 0 16px var(--green-glow);
         }
+        /* Reveal lateral de info */
         .card-info {
-            padding: 18px 20px;
+            padding: 16px 18px;
+            position: relative;
+            z-index: 2;
         }
         .product-name {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             line-height: 1;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
         }
         .product-detail {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
             font-family: 'DM Sans', sans-serif;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            opacity: 0.7;
         }
         .size-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin: 14px 0 12px;
+            gap: 6px;
+            margin: 10px 0 8px;
         }
         .size-btn {
             font-family: 'Space Mono', monospace;
             background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.15);
             color: var(--text-soft);
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 600;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 40px;
             cursor: none;
             transition: all 0.2s;
@@ -482,7 +563,7 @@
             background: var(--green);
             border-color: var(--green);
             color: #000;
-            box-shadow: 0 0 16px var(--green-glow);
+            box-shadow: 0 0 14px var(--green-glow);
         }
         .size-btn:hover {
             border-color: var(--green);
@@ -490,16 +571,16 @@
         }
         .price-block {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.9rem;
+            font-size: 2rem;
             color: var(--green);
             letter-spacing: 1px;
-            margin-top: 8px;
+            margin-top: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .price-ars {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 1px;
             color: var(--text-muted);
             font-family: monospace;
@@ -514,12 +595,12 @@
             text-align: center;
             padding: 14px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             transform: translateY(100%);
-            transition: transform 0.27s cubic-bezier(0.2,0.9,0.4,1.1);
+            transition: transform 0.35s cubic-bezier(0.2,0.9,0.4,1.1);
             cursor: none;
             border: none;
             width: 100%;
@@ -529,7 +610,7 @@
             transform: translateY(0);
         }
 
-        /* ABOUT */
+        /* ─── MANIFIESTO / ABOUT ─── */
         #nosotros {
             padding: 100px 60px;
             display: grid;
@@ -537,8 +618,8 @@
             gap: 70px;
             background: var(--deep);
             position: relative;
-            border-top: 1px solid rgba(57,255,20,0.1);
-            border-bottom: 1px solid rgba(57,255,20,0.1);
+            border-top: 1px solid rgba(57,255,20,0.08);
+            border-bottom: 1px solid rgba(57,255,20,0.08);
         }
         .about-logo-wrap {
             display: flex;
@@ -550,25 +631,27 @@
             max-width: 300px;
             height: auto;
             aspect-ratio: 1 / 1;
-            filter: drop-shadow(0 0 40px var(--green-glow));
+            filter: drop-shadow(0 0 45px var(--green-glow));
         }
         .about-eyebrow {
             font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 4px;
+            font-size: 0.55rem;
+            letter-spacing: 5px;
             color: var(--green);
             margin-bottom: 18px;
+            text-transform: uppercase;
         }
         .about-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2.5rem, 4.5vw, 3.8rem);
-            line-height: 0.92;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            line-height: 0.9;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
         .about-body {
             color: var(--text-soft);
-            line-height: 1.7;
-            font-size: 0.9rem;
+            line-height: 1.8;
+            font-size: 0.85rem;
             margin-bottom: 18px;
         }
         .about-tags {
@@ -584,18 +667,30 @@
             border: 1px solid rgba(57,255,20,0.3);
             border-radius: 30px;
             color: var(--text-soft);
+            letter-spacing: 1px;
+        }
+        .manifesto-quote {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            color: rgba(255,255,255,0.08);
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            letter-spacing: 3px;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* CART PANEL */
+        /* ─── CARRITO LUXURY PANEL ─── */
         .cart-overlay {
             position: fixed;
             inset: 0;
             background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(14px);
             z-index: 300;
             opacity: 0;
             pointer-events: none;
-            transition: 0.25s;
+            transition: 0.3s;
         }
         .cart-panel {
             position: fixed;
@@ -603,14 +698,16 @@
             top: 0;
             width: min(440px, 90%);
             height: 100vh;
-            background: #0c0c0c;
-            border-left: 1px solid var(--green);
+            background: rgba(8,8,8,0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(57,255,20,0.25);
             z-index: 301;
             transform: translateX(100%);
-            transition: 0.3s cubic-bezier(0.2,0.9,0.4,1);
+            transition: 0.35s cubic-bezier(0.2,0.9,0.4,1);
             display: flex;
             flex-direction: column;
-            box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+            box-shadow: -15px 0 50px rgba(0,0,0,0.8);
         }
         .cart-panel.open { transform: translateX(0); }
         .cart-overlay.open { opacity: 1; pointer-events: auto; }
@@ -619,6 +716,7 @@
             border-bottom: 1px solid rgba(57,255,20,0.3);
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
         .cart-items {
             flex: 1;
@@ -629,14 +727,14 @@
             display: flex;
             gap: 15px;
             margin-bottom: 20px;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #1a1a1a;
             padding-bottom: 15px;
         }
         .cart-item-img {
             width: 70px;
             height: 70px;
             object-fit: contain;
-            background: #1a1a1a;
+            background: #111;
             border-radius: 8px;
         }
         .item-details {
@@ -649,7 +747,7 @@
             margin-top: 10px;
         }
         .qty-btn {
-            background: #222;
+            background: #1a1a1a;
             border: none;
             color: white;
             width: 26px;
@@ -659,8 +757,8 @@
         }
         .total-row {
             padding: 1rem;
-            border-top: 1px solid #2a2a2a;
-            background: #050505;
+            border-top: 1px solid #1a1a1a;
+            background: #020202;
         }
         .wa-buy {
             width: 90%;
@@ -672,6 +770,11 @@
             font-weight: bold;
             border-radius: 40px;
             cursor: none;
+            animation: breatheGlow 2s ease-in-out infinite;
+        }
+        @keyframes breatheGlow {
+            0%,100% { box-shadow: 0 0 20px var(--green-glow); }
+            50% { box-shadow: 0 0 40px var(--green-glow); }
         }
         .toast {
             position: fixed;
@@ -694,45 +797,49 @@
             display: flex;
             justify-content: space-between;
             background: #020202;
-            border-top: 1px solid #222;
+            border-top: 1px solid #1a1a1a;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
         }
 
         /* ─── BOTONES FLOTANTES WHATSAPP + INSTAGRAM ─── */
         .floating-social {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: 28px;
+            right: 28px;
             z-index: 250;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
         .social-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1.5px solid rgba(57, 255, 20, 0.4);
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+            border: 1.5px solid rgba(57, 255, 20, 0.35);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.25);
             transition: all 0.25s ease;
             cursor: pointer;
             color: var(--green);
             text-decoration: none;
         }
         .social-btn svg {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             fill: currentColor;
             filter: drop-shadow(0 0 8px var(--green-glow));
             transition: transform 0.2s;
         }
         .social-btn:hover {
-            background: rgba(57, 255, 20, 0.15);
+            background: rgba(57, 255, 20, 0.18);
             border-color: var(--green);
             box-shadow: 0 0 35px var(--green-glow);
             transform: scale(1.08);
@@ -740,20 +847,19 @@
         .social-btn:hover svg {
             transform: scale(1.1);
         }
-        /* Ajuste para que no tape el carrito en mobile */
         @media (max-width: 600px) {
             .floating-social {
                 bottom: 16px;
                 right: 16px;
-                gap: 12px;
+                gap: 10px;
             }
             .social-btn {
-                width: 48px;
-                height: 48px;
+                width: 44px;
+                height: 44px;
             }
             .social-btn svg {
-                width: 24px;
-                height: 24px;
+                width: 22px;
+                height: 22px;
             }
         }
 
@@ -773,6 +879,7 @@
             }
             .product-grid {
                 gap: 16px;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
             header {
                 padding: 12px 20px;
@@ -795,8 +902,12 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .section-note {
+            .collection-code {
                 text-align: left;
+                border-right: none;
+                border-left: 2px solid var(--green);
+                padding-left: 16px;
+                padding-right: 0;
             }
             footer {
                 flex-direction: column;
@@ -805,104 +916,119 @@
                 text-align: center;
             }
         }
-
         @media (max-width: 480px) {
             .product-grid {
                 grid-template-columns: 1fr;
             }
             .hero-title {
-                font-size: 3.4rem;
+                font-size: 3.2rem;
             }
             .hero-tag {
-                font-size: 0.6rem;
-                letter-spacing: 3px;
+                font-size: 0.55rem;
+                letter-spacing: 4px;
             }
             .logo-img {
                 height: 32px;
             }
         }
 
+        /* ─── REVEAL SCROLL ─── */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: 0.7s ease;
+            transform: translateY(40px);
+            transition: 0.8s cubic-bezier(0.2,0.9,0.4,1);
         }
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* ─── MAGNETIC BUTTONS (sutil) ─── */
+        .magnetic {
+            transition: transform 0.2s ease-out;
+        }
     </style>
 </head>
 <body>
+
+    <!-- SCANLINES -->
+    <div class="scanlines"></div>
+    <!-- NOISE ANIMADO -->
+    <div class="noise-overlay"></div>
+    <!-- PARTÍCULAS -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- CURSOR -->
     <div class="cursor" id="cursor"></div>
 
     <!-- BOTONES FLOTANTES (WhatsApp + Instagram) -->
     <div class="floating-social">
-        <!-- WhatsApp -->
-        <a href="https://wa.me/543462415932" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Chatear por WhatsApp" title="WhatsApp">
+        <a href="https://wa.me/543462415932" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="Chatear por WhatsApp" title="WhatsApp">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
             </svg>
         </a>
-        <!-- Instagram -->
-        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram" title="Instagram">
+        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="Seguinos en Instagram" title="Instagram">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
             </svg>
         </a>
     </div>
 
-    <header>
+    <!-- HEADER -->
+    <header id="mainHeader">
         <a href="#" class="logo-link">
             <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MILIMARS" class="logo-img" width="168" height="42" loading="eager" decoding="async">
+            <span class="brand-tagline">STREETWEAR : DIRECCIÓN GENERAL</span>
         </a>
         <nav>
             <a href="#catalogo">Colección</a>
-            <a href="#nosotros">MILIMARS</a>
+            <a href="#nosotros">Manifiesto</a>
             <button class="cart-header-btn" id="openCartBtn">CARRITO <span id="cartCountDisplay" class="cart-count-badge">0</span></button>
         </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO CINEMÁTICO -->
     <section class="hero">
         <div class="hero-left">
             <p class="hero-tag">DROP 2026 · STOCK LIMITADO</p>
             <h1 class="hero-title">MILI<span class="accent">MARS</span><br><span class="outline">STREET</span></h1>
             <p class="hero-sub">Remeras con presencia real · Venado Tuerto · Santa Fe</p>
             <div class="hero-btns">
-                <a href="#catalogo" class="btn-primary">VER COLECCIÓN</a>
-                <button id="heroCartBtn" class="btn-outline">ABRIR CARRITO</button>
+                <a href="#catalogo" class="btn-primary magnetic">VER COLECCIÓN</a>
+                <button id="heroCartBtn" class="btn-outline magnetic">ABRIR CARRITO</button>
             </div>
         </div>
         <div class="hero-right">
+            <div class="fog-layer"></div>
             <div class="hero-glow"></div>
             <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" class="hero-logo-main" alt="Milimars Glow" width="380" height="380" loading="eager" decoding="async">
         </div>
     </section>
 
-    <!-- STATS TICKER -->
+    <!-- STATS TICKER + CÓDIGO COLECCIÓN -->
     <div class="stats-bar">
-        <div class="ticker" id="tickerTrack">
-            <!-- JS populate -->
-        </div>
+        <div class="ticker" id="tickerTrack"></div>
     </div>
 
-    <!-- CATALOG -->
+    <!-- CATÁLOGO EDITORIAL -->
     <section id="catalogo">
         <div class="section-header reveal">
             <h2 class="section-title">NEON <span class="g">DROPS</span></h2>
-            <p class="section-note">Elegí talle · Sumá al carrito · Todo por WhatsApp</p>
+            <div class="collection-code">
+                NEON DIVISION<br>VT-SFE-2026<br><span style="color:var(--green);">12 LEFT</span>
+            </div>
         </div>
         <div class="product-grid" id="productGrid"></div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- MANIFIESTO / ABOUT -->
     <section id="nosotros">
         <div class="about-logo-wrap reveal">
             <img src="https://i.postimg.cc/vTN03832/Lower-Res.png" alt="MiliMars" width="300" height="300" loading="lazy" decoding="async">
         </div>
         <div class="reveal">
-            <p class="about-eyebrow">// IDENTIDAD</p>
+            <p class="about-eyebrow">// MANIFIESTO</p>
             <h2 class="about-title">MILI<span style="color:var(--green)">MARS</span><br>VT · SFE</h2>
             <p class="about-body">La marca que fusiona actitud urbana, estética neón y prendas pensadas para la noche y el día. Cada drop es limitado, con cortes pensados para destacar.</p>
             <p class="about-body">Todo el pedido se gestiona directo por WhatsApp con talle, cantidad y total. Sin intermediarios, con la misma energía que nuestras remeras.</p>
@@ -913,35 +1039,36 @@
                 <span class="tag">Drop 2026</span>
             </div>
         </div>
+        <div class="manifesto-quote">BUILT FOR THE NIGHT</div>
     </section>
 
     <footer>
-        <p style="font-family:monospace; font-size:0.6rem;">MILIMARS · Venado Tuerto · Santa Fe · Argentina</p>
-        <p style="font-family:monospace; font-size:0.55rem; color:var(--green);">DROP 2026 · Stock Limitado</p>
+        <span>MILIMARS · Venado Tuerto · Santa Fe · Argentina</span>
+        <span style="color:var(--green);">DROP 2026 · STREETWEAR : DIRECCIÓN GENERAL</span>
     </footer>
 
     <!-- CART PANEL -->
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-panel" id="cartPanel">
         <div class="cart-head">
-            <h3 style="font-family:'Bebas Neue';">TU CARRITO</h3>
+            <h3 style="font-family:'Bebas Neue'; font-size:1.6rem; letter-spacing:2px;">TU CARRITO</h3>
             <button id="closeCartBtn" style="background:none; border:none; color:white; font-size:1.5rem; cursor:none;" aria-label="Cerrar carrito">✕</button>
         </div>
         <div class="cart-items" id="cartItemsContainer"></div>
         <div class="total-row">
             <div style="display:flex; justify-content:space-between; align-items:baseline;">
-                <span style="font-family:'Space Mono';">TOTAL</span>
-                <span id="cartTotal" style="font-family:'Bebas Neue'; font-size:2rem; color:var(--green);">$0</span>
+                <span style="font-family:'Space Mono'; font-size:0.7rem;">TOTAL</span>
+                <span id="cartTotal" style="font-family:'Bebas Neue'; font-size:2.2rem; color:var(--green);">$0</span>
             </div>
             <button id="whatsappBuyBtn" class="wa-buy">COMPRAR POR WHATSAPP</button>
-            <p style="font-size:0.5rem; text-align:center; margin-top:12px;">Pago y envío coordinados por chat</p>
+            <p style="font-size:0.5rem; text-align:center; margin-top:12px; color:var(--text-muted);">Pago y envío coordinados por chat</p>
         </div>
     </div>
     <div class="toast" id="toastMsg">AGREGADO</div>
 
     <script>
-        // ---------- MILIMARS DATA ----------
-        const WA_NUMBER = "543462415932"; // WhatsApp actualizado
+        // ─── DATOS MILIMARS ───
+        const WA_NUMBER = "543462415932";
         const PRICE = 25000;
         const SIZES = ["XS", "S", "M", "L", "XL"];
         const products = [
@@ -964,7 +1091,7 @@
             document.getElementById("cartTotal").innerHTML = `$${total.toLocaleString("es-AR")}`;
             const container = document.getElementById("cartItemsContainer");
             if(cart.length === 0) {
-                container.innerHTML = `<div style="padding:2rem; text-align:center; color:#aaa;">CARRITO VACÍO<br>🔥 sumá una remera</div>`;
+                container.innerHTML = `<div style="padding:2rem; text-align:center; color:#666;">CARRITO VACÍO<br><span style="color:var(--green);">🔥 sumá una remera</span></div>`;
                 return;
             }
             container.innerHTML = cart.map(item => `
@@ -978,7 +1105,7 @@
                             <button class="qty-btn" data-uid="${item.uid}" data-delta="-1">−</button>
                             <span>${item.qty}</span>
                             <button class="qty-btn" data-uid="${item.uid}" data-delta="1">+</button>
-                            <button style="background:#333; margin-left:auto; padding:4px 10px; border-radius:20px;" data-remove="${item.uid}">eliminar</button>
+                            <button style="background:#1a1a1a; margin-left:auto; padding:4px 10px; border-radius:20px; font-size:0.6rem; border:none; color:#aaa;" data-remove="${item.uid}">eliminar</button>
                         </div>
                     </div>
                 </div>
@@ -1049,6 +1176,7 @@
             grid.innerHTML = products.map(p => `
                 <div class="product-card">
                     <div class="card-img">
+                        <div class="card-spotlight"></div>
                         <img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async" width="400" height="400">
                         <span class="badge">${p.tag}</span>
                     </div>
@@ -1066,6 +1194,18 @@
                     <button class="card-hover-cta" data-add="${p.id}">+ AGREGAR AL CARRITO</button>
                 </div>
             `).join("");
+
+            // Spotlight dinámico en cards
+            document.querySelectorAll(".card-spotlight").forEach(spot => {
+                const card = spot.closest('.product-card');
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    spot.style.setProperty('--x', x + 'px');
+                    spot.style.setProperty('--y', y + 'px');
+                });
+            });
 
             document.querySelectorAll(".size-btn").forEach(btn => {
                 btn.addEventListener("click", (e) => {
@@ -1100,7 +1240,7 @@
 
         function initTicker() {
             const track = document.getElementById("tickerTrack");
-            const items = ["MILIMARS", "NEON GLOW", "STOCK LIMITADO", "ENVÍOS", "REMERAS PREMIUM", "DROP 2026", "VT · SFE", "$25.000", "GREEN EDITION", "COMPRA SEGURA"];
+            const items = ["NEON DIVISION", "STOCK LIMITADO", "ENVÍOS", "REMERAS PREMIUM", "DROP 2026", "VT · SFE", "$25.000", "GREEN EDITION", "COMPRA SEGURA", "12 LEFT"];
             let html = "";
             for(let i=0;i<3;i++) {
                 items.forEach(t => html += `<div class="stat"><span class="stat-num">✦</span><span class="stat-label">${t}</span></div>`);
@@ -1108,24 +1248,125 @@
             track.innerHTML = html;
         }
 
-        // ─── CUSTOM CURSOR (solo desktop) ───
-        const cursor = document.getElementById("cursor");
-        const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // ─── PARTÍCULAS FLOTANTES (canvas) ───
+        function initParticles() {
+            const canvas = document.getElementById('particlesCanvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const maxParticles = 30;
 
-        if (!isTouchDevice()) {
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                    this.y = Math.random() * canvas.height;
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = -10;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedY = Math.random() * 0.4 + 0.1;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    if(this.y > canvas.height + 10) this.reset();
+                }
+                draw(ctx) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+                    ctx.fillStyle = `rgba(57,255,20,${this.opacity})`;
+                    ctx.shadowColor = '#39FF14';
+                    ctx.shadowBlur = 4;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+
+            for(let i=0; i<maxParticles; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                particles.forEach(p => { p.update(); p.draw(ctx); });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        initParticles();
+
+        // ─── CURSOR CUSTOM + TRAIL ───
+        const cursorEl = document.getElementById("cursor");
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (!isTouch) {
+            let lastTrailTime = 0;
             document.addEventListener("mousemove", e => {
-                cursor.style.left = e.clientX - 7 + "px";
-                cursor.style.top = e.clientY - 7 + "px";
+                cursorEl.style.left = e.clientX - 7 + "px";
+                cursorEl.style.top = e.clientY - 7 + "px";
+
+                // Trail cada 60ms
+                const now = Date.now();
+                if(now - lastTrailTime > 60) {
+                    const trail = document.createElement('div');
+                    trail.className = 'cursor-trail';
+                    trail.style.left = e.clientX + 'px';
+                    trail.style.top = e.clientY + 'px';
+                    document.body.appendChild(trail);
+                    setTimeout(() => trail.remove(), 800);
+                    lastTrailTime = now;
+                }
             });
-            document.querySelectorAll("a, button, .product-card, .size-btn, .social-btn").forEach(el => {
-                el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
-                el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+
+            const hoverTargets = document.querySelectorAll("a, button, .product-card, .size-btn, .social-btn");
+            hoverTargets.forEach(el => {
+                el.addEventListener("mouseenter", () => cursorEl.classList.add("hover"));
+                el.addEventListener("mouseleave", () => cursorEl.classList.remove("hover"));
             });
         } else {
-            cursor.style.display = "none";
+            cursorEl.style.display = "none";
         }
 
-        // scroll reveal
+        // ─── MAGNETIC BUTTONS ───
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width/2;
+                const y = e.clientY - rect.top - rect.height/2;
+                btn.style.transform = `translate(${x*0.15}px, ${y*0.15}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0px, 0px)';
+            });
+        });
+
+        // ─── HEADER OCULTO EN SCROLL ───
+        let lastScroll = 0;
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if(currentScroll <= 0) {
+                header.classList.remove('hidden');
+                return;
+            }
+            if(currentScroll > lastScroll && currentScroll > 80) {
+                header.classList.add('hidden');
+            } else if(currentScroll < lastScroll) {
+                header.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // ─── SCROLL REVEAL ───
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if(e.isIntersecting) e.target.classList.add("visible");
@@ -1133,7 +1374,7 @@
         }, { threshold: 0.1 });
         document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-        // events
+        // ─── EVENTOS ───
         document.getElementById("openCartBtn").addEventListener("click", openCart);
         document.getElementById("heroCartBtn").addEventListener("click", openCart);
         document.getElementById("closeCartBtn").addEventListener("click", closeCart);
@@ -1143,6 +1384,7 @@
             if(e.key === "Escape") closeCart();
         });
 
+        // ─── INICIALIZAR ───
         loadCart();
         initTicker();
         renderProductsGrid();
