@@ -213,7 +213,8 @@
         text-transform: uppercase;
         color: var(--muted);
     }
-    .flow-media {
+      .flow-media {
+        position: relative;
         aspect-ratio: 4 / 5;
         overflow: hidden;
         border-radius: var(--radius);
@@ -224,7 +225,25 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        opacity: 0;
+        transition: transform 0.5s ease, opacity 0.35s ease;
+    }
+    .flow-media.is-loaded img {
+        opacity: 1;
+    }
+    .flow-media.is-loading::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, #0d0d0d 0%, #1c1c1c 50%, #0d0d0d 100%);
+        background-size: 200% 100%;
+        animation: flowShimmer 1.4s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 1;
+    }
+    @keyframes flowShimmer {
+        0%   { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
     }
     .flow-step:hover .flow-media img { transform: scale(1.05); }
     .flow-desc {
@@ -1480,9 +1499,9 @@
                         <span class="flow-num">01</span>
                         <span class="flow-label">Boceto</span>
                     </div>
-                    <div class="flow-media">
-                        <img id="flowImg1" src="https://imglink.cc/cdn/UoliTM1FCv.png" alt="Boceto del drop" loading="lazy" decoding="async">
-                    </div>
+                    <div class="flow-media is-loading">
+    <img id="flowImg1" alt="Boceto del drop" decoding="async">
+</div>
                     <p class="flow-desc">Definimos la idea, el mensaje y la paleta de cada drop.</p>
                 </div>
 
@@ -1493,9 +1512,9 @@
                         <span class="flow-num">02</span>
                         <span class="flow-label">Moldería</span>
                     </div>
-                    <div class="flow-media">
-                        <img id="flowImg2" src="https://imglink.cc/i/rXOlcOR-P6" alt="Prueba de moldería" loading="lazy" decoding="async">
-                    </div>
+                    <div class="flow-media is-loading">
+    <img id="flowImg2" alt="Prueba de moldería" decoding="async">
+</div>
                     <p class="flow-desc">Probamos calce y medidas sobre cuerpos reales.</p>
                 </div>
 
@@ -1506,9 +1525,9 @@
                         <span class="flow-num">03</span>
                         <span class="flow-label">Estampa</span>
                     </div>
-                    <div class="flow-media">
-                        <img id="flowImg3" src="https://imglink.cc/cdn/3w21rP1wWE.png" alt="Estampado" loading="lazy" decoding="async">
-                    </div>
+                    <div class="flow-media is-loading">
+    <img id="flowImg3" alt="Estampado" decoding="async">
+</div>
                     <p class="flow-desc">Serigrafía y vinilo sobre algodón de peso medio.</p>
                 </div>
 
@@ -2157,13 +2176,36 @@
     }
 
     /* ═══════════ FLOW ═══════════ */
-    function applyFlowImages() {
-        const img1 = $("flowImg1");
-        const img2 = $("flowImg2");
-        const img3 = $("flowImg3");
-        if (img1) img1.src = flowImages[0] || "";
-        if (img2) img2.src = flowImages[1] || "";
-        if (img3) img3.src = flowImages[2] || "";
+     function applyFlowImages() {
+        [0, 1, 2].forEach(function (i) {
+            const img = $("flowImg" + (i + 1));
+            if (!img) return;
+            const media = img.parentElement;
+            const url = flowImages[i];
+
+            if (media) {
+                media.classList.remove("is-loaded");
+                media.classList.add("is-loading");
+            }
+
+            if (!url) {
+                if (media) media.classList.remove("is-loading");
+                img.removeAttribute("src");
+                return;
+            }
+
+            img.onload = function () {
+                if (media) {
+                    media.classList.remove("is-loading");
+                    media.classList.add("is-loaded");
+                }
+            };
+            img.onerror = function () {
+                if (media) media.classList.remove("is-loading");
+            };
+
+            img.src = url;
+        });
     }
 
     function renderFlowAdmin() {
